@@ -47,7 +47,21 @@ const HeroSection = () => {
           </div>
           
           <div className="lg:w-1/2 relative">
-            <div className="cyber-card-glow relative overflow-hidden rounded-xl border-cyber-primary transform rotate-3 animate-float">
+            <div className="mb-8 flex justify-center lg:mb-0">
+              <img 
+                src={`${import.meta.env.BASE_URL}chef-sizzle-image.jpg`} 
+                alt="Chef Sizzle AI-Generated Character" 
+                className="rounded-xl border-2 border-cyber-primary shadow-lg shadow-cyber-primary/30 max-w-full h-auto"
+                style={{ maxHeight: '500px' }}
+                loading="eager"
+                onError={(e) => {
+                  console.error('Image failed to load:', e);
+                  e.currentTarget.src = 'https://ideogram.ai/assets/image/lossless/response/EJG2KZflRQmNkDe9MdHA0g';
+                }}
+              />
+            </div>
+            
+            <div className="cyber-card-glow relative overflow-hidden rounded-xl border-cyber-primary mt-8 transform rotate-3 animate-float">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyber-purple via-cyber-primary to-cyber-secondary"></div>
               
               <div className="p-6 backdrop-blur-sm">
@@ -83,20 +97,6 @@ const HeroSection = () => {
             {/* Decorative elements */}
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-cyber-secondary opacity-20 rounded-full blur-3xl"></div>
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-cyber-primary opacity-20 rounded-full blur-3xl"></div>
-          </div>
-        </div>
-        
-        {/* YouTube Video Section */}
-        <div className="mt-12 w-full cyber-card-glow p-1">
-          <div className="relative w-full pb-[56.25%]">
-            <iframe 
-              className="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/vJz1HOGtV0I?autoplay=1&mute=0&controls=1&vq=hd1080" 
-              title="Chef Sizzle GPT Demo"
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen
-            ></iframe>
           </div>
         </div>
       </div>
