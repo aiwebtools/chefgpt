@@ -61,6 +61,19 @@ const HeroSection = () => {
               />
             </div>
             
+            {/* YouTube Embedded Video */}
+            <div className="mt-8 relative overflow-hidden rounded-xl border-2 border-cyber-primary shadow-lg shadow-cyber-primary/30">
+              <div className="aspect-w-16 aspect-h-9">
+                <iframe 
+                  src="https://www.youtube.com/embed/vJz1HOGtV0I?autoplay=1&mute=0&controls=1&vq=hd1080" 
+                  title="Chef Sizzle GPT Presentation"
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+            
             <div className="cyber-card-glow relative overflow-hidden rounded-xl border-cyber-primary mt-8 transform rotate-3 animate-float">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyber-purple via-cyber-primary to-cyber-secondary"></div>
               
