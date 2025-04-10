@@ -85,6 +85,20 @@ const HeroSection = () => {
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-cyber-primary opacity-20 rounded-full blur-3xl"></div>
           </div>
         </div>
+        
+        {/* YouTube Video Section */}
+        <div className="mt-12 w-full cyber-card-glow p-1">
+          <div className="relative w-full pb-[56.25%]">
+            <iframe 
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/vJz1HOGtV0I?autoplay=1&mute=0&controls=1&vq=hd1080" 
+              title="Chef Sizzle GPT Demo"
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
       </div>
     </section>
   );
