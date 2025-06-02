@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChefHat, Phone, Mail, ArrowRight } from 'lucide-react';
 
@@ -104,7 +103,7 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="https://aiwebtools.ai/terms-of-services"
+                  href="https://aiwebtools.lovable.app/disclaimers"
                   className="text-gray-400 hover:text-cyber-primary transition-colors flex items-center"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -141,7 +140,6 @@ const Footer = () => {
           </div>
         </div>
         
-        {/* More AI Tools Button */}
         <div className="fixed bottom-6 right-6 z-50">
           <a 
             href="https://www.aiwebtools.ai"
