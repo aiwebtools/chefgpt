@@ -1,8 +1,15 @@
+
+User-agent: *
+Allow: /
+
+# Specific bot instructions for better indexing
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Twitterbot
 Allow: /
@@ -10,5 +17,15 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: LinkedInBot
 Allow: /
+
+# Sitemap location
+Sitemap: https://chefsizzlegpt.lovable.app/sitemap.xml
+
+# Additional directives for AI tools SEO
+# Priority pages for AI tools keywords
+Allow: /#features
+Allow: /#how-it-works
+Allow: /#faq
+Allow: /#disclaimer
