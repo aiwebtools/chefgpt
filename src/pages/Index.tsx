@@ -11,13 +11,13 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   useEffect(() => {
-    // Set page title with AI tools keywords
-    document.title = 'AI WEB TOOLS - #1 AI Tools Platform | AIWEBTOOLS.AI | Chef Sizzle GPT';
+    // Set page title with Chef Sizzle GPT as primary focus
+    document.title = 'Chef Sizzle GPT - AI Culinary Genius | Instant Creative Recipes | AIWEBTOOLS.AI';
     
-    // Update meta description with target keywords
+    // Update meta description with tool-focused content
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'AI WEB TOOLS - The #1 platform for AI tools including Chef Sizzle GPT, the world\'s most creative AI chef. Discover powerful AI tools for cooking, recipes, and more at AIWEBTOOLS.AI');
+      metaDescription.setAttribute('content', 'Chef Sizzle GPT: The world\'s most creative AI chef delivering instant, crazy delicious recipes. Get personalized cooking guidance, ingredient substitutions, and culinary inspiration powered by advanced AI technology from AIWEBTOOLS.AI');
     }
 
     // Add keywords meta tag dynamically
@@ -27,7 +27,7 @@ const Index = () => {
       keywordsMeta.setAttribute('name', 'keywords');
       document.head.appendChild(keywordsMeta);
     }
-    keywordsMeta.setAttribute('content', 'AI tools, AI web tools, AIWEBTOOLS.AI, Chef Sizzle GPT, AI chef, AI recipe generator, artificial intelligence tools, AI cooking assistant, best AI tools, AI platform');
+    keywordsMeta.setAttribute('content', 'Chef Sizzle GPT, AI chef, AI recipe generator, AI cooking assistant, instant recipes, culinary AI, cooking chatbot, recipe creator, AI tools, AIWEBTOOLS.AI, artificial intelligence cooking, personalized recipes');
     
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -53,9 +53,9 @@ const Index = () => {
     seoHeadings.style.width = '1px';
     seoHeadings.style.height = '1px';
     seoHeadings.innerHTML = `
-      <h1>AI WEB TOOLS - Premier AI Tools Platform</h1>
-      <h2>AIWEBTOOLS.AI - Your Source for Advanced AI Solutions</h2>
-      <h3>Chef Sizzle GPT - Revolutionary AI Chef Technology</h3>
+      <h1>Chef Sizzle GPT - AI Culinary Genius for Instant Creative Recipes</h1>
+      <h2>Revolutionary AI Chef Technology by AIWEBTOOLS.AI</h2>
+      <h3>Personalized Cooking Guidance and Recipe Generation</h3>
     `;
     document.body.appendChild(seoHeadings);
   }, []);
