@@ -77,7 +77,7 @@ const HeroSection = () => {
                 <div className="my-6 relative overflow-hidden rounded-xl border-2 border-cyber-primary shadow-lg shadow-cyber-primary/30">
                   <div className="aspect-w-16 aspect-h-9">
                     <iframe 
-                      src="https://www.youtube.com/embed/vJz1HOGtV0I?autoplay=1&mute=0&controls=1&vq=hd1080" 
+                      src="https://www.youtube.com/embed/89u14Jld7uA?autoplay=1&mute=0&controls=1&vq=hd1080" 
                       title="Chef Sizzle GPT Presentation"
                       className="w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
