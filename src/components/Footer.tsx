@@ -20,7 +20,7 @@ const Footer = () => {
             <div className="pt-4">
               <p className="text-sm text-gray-500">Presented by</p>
               <a 
-                href="https://www.aiwebtools.ai"
+                href="https://aiwebtools.lovable.app/?via=aiwebtools"
                 className="text-cyber-primary hover:text-cyber-secondary transition-colors font-cyber font-bold"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -75,7 +75,7 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="https://www.aiwebtools.ai"
+                  href="https://aiwebtools.lovable.app/?via=aiwebtools"
                   className="text-gray-400 hover:text-cyber-primary transition-colors flex items-center"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -142,7 +142,7 @@ const Footer = () => {
         
         <div className="fixed bottom-6 right-6 z-50">
           <a 
-            href="https://www.aiwebtools.ai"
+            href="https://aiwebtools.lovable.app/?via=aiwebtools"
             className="neon-button-cyan flex items-center py-3 px-5 rounded-full text-sm font-bold"
             target="_blank"
             rel="noopener noreferrer"

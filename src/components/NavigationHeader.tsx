@@ -1,6 +1,6 @@
 
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Home, MessageSquare, HelpCircle, FileText, Grid } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Menu, X, MessageSquare, HelpCircle, FileText, Grid } from 'lucide-react';
 import Logo3D from './Logo3D';
 
 const NavigationHeader = () => {
@@ -9,37 +9,42 @@ const NavigationHeader = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 10);
     };
-
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    // Prevent body scroll when mobile menu is open
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
-    
     return () => {
       document.body.style.overflow = '';
     };
   }, [isMenuOpen]);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     setIsMenuOpen(false);
-  };
+  }, []);
+
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen(prev => !prev);
+  }, []);
+
+  const handleAnchorClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    closeMenu();
+  }, [closeMenu]);
 
   const navigationItems = [
     {
@@ -66,7 +71,7 @@ const NavigationHeader = () => {
     },
     {
       name: 'More AI Tools',
-      href: 'https://www.aiwebtools.ai',
+      href: 'https://aiwebtools.lovable.app/?via=aiwebtools',
       icon: <Grid size={20} />
     }
   ];
@@ -74,13 +79,13 @@ const NavigationHeader = () => {
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'py-2 bg-black bg-opacity-80 backdrop-blur-md' : 'py-4'
+        isScrolled ? 'py-2 bg-black/80 backdrop-blur-md shadow-lg shadow-black/20' : 'py-3 sm:py-4'
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <a 
           href="https://chatgpt.com/g/g-67f6f08b7e0481919148c4637c3a5e1a-chef-sizzle-gpt"
-          className="flex items-center transition-transform hover:scale-105"
+          className="flex items-center transition-transform hover:scale-105 active:scale-95"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -88,15 +93,15 @@ const NavigationHeader = () => {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-4 items-center">
+        <nav className="hidden md:flex space-x-3 lg:space-x-4 items-center">
           {navigationItems.map((item) => (
             <a 
               key={item.name}
               href={item.href}
-              className={item.className || "text-white hover:text-cyber-secondary transition-colors"}
+              className={`whitespace-nowrap text-sm lg:text-base ${item.className || "text-white hover:text-cyber-secondary transition-colors"}`}
               target={item.href.startsWith('http') ? "_blank" : undefined}
               rel={item.href.startsWith('http') ? "noopener noreferrer" : undefined}
-              onClick={item.href.startsWith('#') ? closeMenu : undefined}
+              onClick={(e) => handleAnchorClick(e, item.href)}
             >
               {item.name}
             </a>
@@ -106,44 +111,64 @@ const NavigationHeader = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="md:hidden text-cyber-primary focus:outline-none p-2 rounded-full border-2 border-cyber-primary"
+          className="md:hidden text-cyber-primary focus:outline-none p-2 rounded-full border-2 border-cyber-primary active:scale-90 transition-transform touch-manipulation"
           aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu - Improved for better navigation */}
-      {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-[72px] bg-black bg-opacity-95 backdrop-blur-md z-50 flex flex-col">
-          <div className="container mx-auto px-6 py-8 flex flex-col space-y-6 h-full overflow-y-auto">
-            {navigationItems.map((item) => (
-              <a 
-                key={item.name}
-                href={item.href}
-                className={`flex items-center space-x-4 py-4 px-4 rounded-lg transition-all duration-200 active:scale-95 ${
-                  item.className ? 
-                    item.name === 'Chef Sizzle GPT' ? 'bg-transparent text-cyber-primary border-2 border-cyber-primary' : 
-                    'bg-transparent text-cyber-secondary border-2 border-cyber-secondary' : 
-                    'text-white hover:bg-cyber-muted'
-                }`}
-                target={item.href.startsWith('http') ? "_blank" : undefined}
-                rel={item.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                onClick={closeMenu}
-              >
-                <span className="text-2xl">{item.icon}</span>
-                <span className="text-lg font-medium">{item.name}</span>
-              </a>
-            ))}
-            
-            <div className="mt-auto py-4 border-t border-gray-800">
-              <p className="text-gray-400 text-center text-sm">
-                &copy; {new Date().getFullYear()} AiWebTools.Ai
-              </p>
-            </div>
+      {/* Mobile Menu - Full screen overlay with smooth transition */}
+      <div 
+        className={`md:hidden fixed inset-0 top-0 bg-black/95 backdrop-blur-md z-40 flex flex-col transition-all duration-300 ${
+          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        style={{ willChange: 'opacity' }}
+      >
+        {/* Close button at top right */}
+        <div className="flex justify-end p-4 pt-5">
+          <button
+            onClick={closeMenu}
+            className="text-cyber-primary p-2 rounded-full border-2 border-cyber-primary active:scale-90 transition-transform touch-manipulation"
+            aria-label="Close menu"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        <div className="flex-1 container mx-auto px-6 pb-8 flex flex-col space-y-4 overflow-y-auto overscroll-contain -webkit-overflow-scrolling-touch">
+          {navigationItems.map((item, index) => (
+            <a 
+              key={item.name}
+              href={item.href}
+              className={`flex items-center space-x-4 py-4 px-5 rounded-xl transition-all duration-200 active:scale-[0.97] touch-manipulation ${
+                item.className ? 
+                  item.name === 'Chef Sizzle GPT' ? 'bg-cyber-primary/10 text-cyber-primary border-2 border-cyber-primary' : 
+                  'bg-cyber-secondary/10 text-cyber-secondary border-2 border-cyber-secondary' : 
+                  'text-white hover:bg-white/5 active:bg-white/10 border border-white/10'
+              }`}
+              style={{ 
+                transform: isMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+                opacity: isMenuOpen ? 1 : 0,
+                transition: `all 0.3s ease ${index * 0.05}s`
+              }}
+              target={item.href.startsWith('http') ? "_blank" : undefined}
+              rel={item.href.startsWith('http') ? "noopener noreferrer" : undefined}
+              onClick={(e) => handleAnchorClick(e, item.href)}
+            >
+              <span className="text-xl shrink-0">{item.icon}</span>
+              <span className="text-lg font-medium">{item.name}</span>
+            </a>
+          ))}
+          
+          <div className="mt-auto pt-6 border-t border-white/10">
+            <p className="text-gray-400 text-center text-sm">
+              &copy; {new Date().getFullYear()} AiWebTools.Ai
+            </p>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };
