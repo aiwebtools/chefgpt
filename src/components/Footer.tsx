@@ -142,7 +142,7 @@ const Footer = () => {
         
         <div className="fixed bottom-6 right-6 z-50">
           <a 
-            href="https://www.aiwebtools.ai"
+            href="https://aiwebtools.lovable.app/?via=aiwebtools"
             className="neon-button-cyan flex items-center py-3 px-5 rounded-full text-sm font-bold"
             target="_blank"
             rel="noopener noreferrer"

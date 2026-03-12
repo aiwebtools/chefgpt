@@ -66,7 +66,7 @@ const NavigationHeader = () => {
     },
     {
       name: 'More AI Tools',
-      href: 'https://www.aiwebtools.ai',
+      href: 'https://aiwebtools.lovable.app/?via=aiwebtools',
       icon: <Grid size={20} />
     }
   ];
