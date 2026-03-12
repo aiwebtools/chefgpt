@@ -20,7 +20,7 @@ const Footer = () => {
             <div className="pt-4">
               <p className="text-sm text-gray-500">Presented by</p>
               <a 
-                href="https://www.aiwebtools.ai"
+                href="https://aiwebtools.lovable.app/?via=aiwebtools"
                 className="text-cyber-primary hover:text-cyber-secondary transition-colors font-cyber font-bold"
                 target="_blank"
                 rel="noopener noreferrer"
